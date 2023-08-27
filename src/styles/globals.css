@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.headline {
+  width: 100%;
+  font: 8vw system-ui, sans-serif;
+  font-weight: 900;
+  height: 150px;
+}
+@supports (backdrop-filter: blur(12px)) {
+  .visually-hidden {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  h1 {
+    backdrop-filter: blur(12px);
+    background: rgba(white, 0.5);
+    clip-path: url(#lockup-headline-mask-path);
+  }
+}
