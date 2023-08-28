@@ -1,10 +1,17 @@
 import Head from "next/head";
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import Image from "next/image";
+import { type IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
+import { ArrowDownCircleIcon } from "lucide-react";
 
-import fg from "../../public/arch_in_desert/fg.webp"
-import bg from "../../public/arch_in_desert/bg.webp"
+import bg from "../../public/hdd.jpg"
+import avatar from "../../public/avatar.jpg"
+import { useRef } from "react";
+import { Avatar, AvatarFallback } from "~/components/ui/avatar";
+import { AvatarImage } from "@radix-ui/react-avatar";
 
 export default function Home() {
+  const ref = useRef<IParallax>(null)
+
   return (
     <>
       <Head>
@@ -12,10 +19,9 @@ export default function Home() {
         <meta name="description" content="Codelab" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Parallax pages={4} className="bg-black text-white font-semibold text-4xl">
+      <Parallax ref={ref} pages={2} className="bg-black text-white font-semibold text-4xl">
         <ParallaxLayer
           speed={.1}
-          factor={1.56}
           offset={0}
           style={{
             backgroundImage: `url(${bg.src})`,
@@ -23,35 +29,29 @@ export default function Home() {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
           }}
+          className={`blur-md brightness-50`}
         />
-        <ParallaxLayer speed={.5} offset={.46}>
-          <div className="flex justify-center items-center w-full h-full text-black">
-            <span className="font-bold">
-              \/
-            </span>
-          </div>
+        <ParallaxLayer speed={50} offset={0} className="flex flex-col-reverse items-center p-4">
+          <button onClick={() => ref.current?.scrollTo(1)}>
+            <ArrowDownCircleIcon className="h-8 w-8" />
+          </button>
         </ParallaxLayer>
-        <ParallaxLayer
-          speed={.15}
-          factor={1.2}
-          offset={.3}
-          style={{
-            backgroundImage: `url(${fg.src})`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-          }}
-        />
-        <ParallaxLayer speed={0.75} offset={0}>
-          <div className="flex flex-col items-center w-full h-full text-black pt-20">
-            <h1 className="headline bg-black/20">
-              <span className="visually-hidden">Codelab</span>
-              <svg aria-hidden="true" id="lockup-headline-mask" className="headline lockup-headline-mask visually-hidden">
-                <clipPath id="lockup-headline-mask-path">
-                  <text dominantBaseline="hanging" textAnchor="middle" x="50%" y="0em" dy="0.0em">Codelab</text>
-                </clipPath>
-              </svg>
-            </h1>
+        <ParallaxLayer speed={0.75} offset={0} className="flex flex-col justify-center items-center gap-4">
+          <h1 className="text-9xl font-bold bg-gradient-to-r from-indigo-300 to-purple-400 text-transparent bg-clip-text">Codelab</h1>
+          {/* aca8fc */}
+          <p className="bg-gradient-to-r from-[#ACA8FC] to-[#B991FC] text-transparent bg-clip-text">Coding for fun</p>
+        </ParallaxLayer>
+        <ParallaxLayer speed={0.75} offset={1} factor={.2} className="flex flex-col gap-4 justify-center items-center">
+          <h2 className="text-5xl">Meet the degenerates</h2>
+          <div className="flex justify-center items-center gap-2">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <Avatar key={i}>
+                <AvatarImage asChild src="/avatar.jpg">
+                  <Image alt="@dude" src={avatar} />
+                </AvatarImage>
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            ))}
           </div>
         </ParallaxLayer>
       </Parallax>
