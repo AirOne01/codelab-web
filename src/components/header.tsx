@@ -8,7 +8,7 @@ import { cn } from "~/lib/utils"
 const Header = ({ className, ...props }: { className?: string }) => (
   <div
     className={cn(
-      "flex p-2 w-full shrink-0 overflow-hidden bg-transparent justify-between items-center stroke-white",
+      "flex p-2 w-full shrink-0 overflow-hidden bg-transparent justify-between items-center stroke-white backdrop-blur",
       className
     )}
     {...props}

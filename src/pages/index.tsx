@@ -1,18 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
-import { type IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import { ArrowDownCircleIcon } from "lucide-react";
 
 import bg from "../../public/hdd.jpg"
 import avatar from "../../public/avatar.jpg"
-import { useRef } from "react";
 import { Avatar, AvatarFallback } from "~/components/ui/avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
 import { Header } from "~/components/header";
 
 export default function Home() {
-  const ref = useRef<IParallax>(null)
-
   return (
     <>
       <Head>
@@ -20,7 +17,7 @@ export default function Home() {
         <meta name="description" content="Codelab" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Parallax ref={ref} pages={2} className="bg-black text-white font-semibold text-4xl">
+      <Parallax pages={2} className="bg-black text-white font-semibold text-4xl">
         <ParallaxLayer
           speed={.1}
           offset={0}
@@ -33,7 +30,7 @@ export default function Home() {
           className={`blur-md brightness-50`}
         />
         <ParallaxLayer speed={50} offset={0} className="flex flex-col-reverse items-center p-4">
-          <button onClick={() => ref.current?.scrollTo(1)}>
+          <button>
             <ArrowDownCircleIcon className="h-8 w-8" />
           </button>
         </ParallaxLayer>
