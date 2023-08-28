@@ -8,6 +8,7 @@ import avatar from "../../public/avatar.jpg"
 import { useRef } from "react";
 import { Avatar, AvatarFallback } from "~/components/ui/avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
+import { Header } from "~/components/header";
 
 export default function Home() {
   const ref = useRef<IParallax>(null)
@@ -53,6 +54,9 @@ export default function Home() {
               </Avatar>
             ))}
           </div>
+        </ParallaxLayer>
+        <ParallaxLayer sticky={{ start: 0 }}>
+          <Header />
         </ParallaxLayer>
       </Parallax>
     </>
