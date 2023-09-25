@@ -3,6 +3,7 @@ import { type AppType } from "next/app";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from '~/components/theme-provider';
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return <ClerkProvider
@@ -11,7 +12,13 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     }}
     {...pageProps}
   >
-    <Component {...pageProps} />
+    <ThemeProvider
+      attribute='class'
+      defaultTheme='black'
+      disableTransitionOnChange
+    >
+      <Component {...pageProps} />
+    </ThemeProvider>
   </ClerkProvider>
 };
 

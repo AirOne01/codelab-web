@@ -4,30 +4,35 @@ import Link from "next/link"
 import * as React from "react"
 
 import { cn } from "~/lib/utils"
+import { HeaderNav } from "./header-nav"
+import { ModeToggle } from "./ui/mode-toggle"
+import { Button } from "./ui/button"
 
 const Header = ({ className, ...props }: { className?: string }) => (
   <div
     className={cn(
-      "flex p-2 px-3 w-full shrink-0 overflow-hidden bg-transparent justify-between items-center stroke-white backdrop-blur",
+      "flex p-2 px-3 w-full h-96 shrink-0 overflow-hidden bg-transparent justify-between items-start stroke-white",
       className
     )}
     {...props}
   >
     {/* LEFT */}
     <Link href="/">
-      <Code2Icon className="h-8 w-8" />
+      <Code2Icon className="h-8 w-8 z-50 relative" />
     </Link>
+    {/* HEADER NAV */}
+    <HeaderNav />
     {/* RIGHT */}
-    <div>
+    <div className="flex gap-2 items-center justify-center">
+      <ModeToggle className="h-8 w-8" />
       <SignedIn>
         <UserButton afterSignOutUrl="/"/>
       </SignedIn>
       <SignedOut>
         <SignInButton>
-          <div className="relative group h-8 w-8 cursor-pointer">
-            <LogInIcon className="absolute" />
-            <div className="absolute top-0 left-1/4 h-4 w-4 transition-all duration-150 bg-transparent group-hover:bg-gradient-to-r block blur-md from-purple-400 to-yellow-400" />
-          </div>
+          <Button variant="ghost" className="h-10 w-10 p-1">
+            <LogInIcon className="w-8 h-8 cursor-pointer z-50" />
+          </Button>
         </SignInButton>
       </SignedOut>
     </div>
